@@ -29,21 +29,7 @@ pipeline {
             }
         }
 
-        stage("Deploy to AWS"){
-            steps{
-                 withAWS(credentials:'puneetawscred', region:'us-east-1') {
-                     s3Upload(workingDir:'dist/my-workout-app', includePathPattern:'**/*', bucket:'my-jenkinsangular1', path:'')
-            }
-            }
-            post {
-                success{
-                    bat 'echo "Uploaded to AWS"'
-                }
-                failure{
-                    bat 'echo "failure"'
-                }
-            }
-        
+       
         }
     }
 }
